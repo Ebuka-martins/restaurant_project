@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (guestsInput) {
         guestsInput.addEventListener('change', function() {
             if (this.value < 1) this.value = 1;
-            if (this.value > 8) {
-                this.value = 8;
-                alert('For parties larger than 8, please contact us directly.');
+            if (this.value > 20) {
+                this.value = 20;
+                alert('For parties larger than 20, please contact us directly.');
             }
         });
     }
