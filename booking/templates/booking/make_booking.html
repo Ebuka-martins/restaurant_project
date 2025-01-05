@@ -1,10 +1,32 @@
+<!-- booking/templates/booking/make_booking.html -->
 {% extends 'booking/base.html' %}
 
 {% block content %}
+<div class="booking-container">
     <h2>Make a Booking</h2>
-    <form method="post">
+    
+    {% if available_times %}
+    <div class="time-slots">
+        <h3>Available Times</h3>
+        <div class="slots-grid">
+            {% for time in available_times %}
+                <button class="time-slot" data-time="{{ time }}">
+                    {{ time }}
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <form method="post" id="booking-form" class="booking-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Book Table</button>
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="submit-btn">Book Table</button>
     </form>
+</div>
+
+{% load static %}
+<script src="{% static 'booking/js/booking.js' %}"></script>
 {% endblock %}

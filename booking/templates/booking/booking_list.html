@@ -1,4 +1,5 @@
-    {% extends 'booking/base.html' %}
+<!-- booking/templates/booking/booking_list.html -->
+{% extends 'booking/base.html' %}
 
 {% block content %}
     <h2>My Bookings</h2>
@@ -9,10 +10,17 @@
                 <p>Time: {{ booking.booking_time }}</p>
                 <p>Table: {{ booking.table.table_number }}</p>
                 <p>Guests: {{ booking.number_of_guests }}</p>
+                <p>Status: <span class="status {{ booking.status }}">{{ booking.status|title }}</span></p>
+                {% if booking.status == 'confirmed' %}
+                    <a href="{% url 'cancel_booking' booking.id %}" class="cancel-button">Cancel Booking</a>
+                {% endif %}
             </div>
         {% endfor %}
     {% else %}
         <p>You have no bookings.</p>
     {% endif %}
+    
+    <div class="booking-actions">
+        <a href="{% url 'make_booking' %}" class="book-button">Make New Booking</a>
+    </div>
 {% endblock %}
-

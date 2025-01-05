@@ -1,4 +1,3 @@
-# booking/models.py
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -17,11 +16,17 @@ class Booking(models.Model):
     booking_time = models.TimeField()
     number_of_guests = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('confirmed', 'Confirmed'),
+            ('cancelled', 'Cancelled'),
+        ],
+        default='confirmed'
+    )
+
     class Meta:
         unique_together = ['table', 'booking_date', 'booking_time']
     
     def __str__(self):
-        return f"Booking for {self.user.username} - Table {self.table.table_number}"
-
-
+        return f"Booking for {self.user.username} - Table {self.table.table_number} - Status: {self.status}"

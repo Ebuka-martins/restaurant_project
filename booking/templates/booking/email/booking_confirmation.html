@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .booking-details { margin: 20px 0; }
+        .footer { margin-top: 30px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h2>Booking Confirmation</h2>
+    
+    <div class="booking-details">
+        <p>Dear {{ booking.user.first_name|default:booking.user.username }},</p>
+        
+        <p>Your booking has been confirmed for:</p>
+        <ul>
+            <li>Date: {{ booking.booking_date }}</li>
+            <li>Time: {{ booking.booking_time }}</li>
+            <li>Number of guests: {{ booking.number_of_guests }}</li>
+            <li>Table: {{ booking.table.table_number }}</li>
+        </ul>
+    </div>
+    
+    <div class="restaurant-info">
+        <h3>{{ restaurant_name }}</h3>
+        <p>{{ restaurant_address }}</p>
+        <p>Phone: {{ restaurant_phone }}</p>
+    </div>
+    
+    <div class="footer">
+        <p>If you need to modify or cancel your booking, please visit our website or contact us directly.</p>
+    </div>
+</body>
+</html>

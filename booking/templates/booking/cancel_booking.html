@@ -1,0 +1,22 @@
+<!-- booking/templates/booking/cancel_booking.html -->
+{% extends 'booking/base.html' %}
+
+{% block content %}
+<div class="cancel-booking-container">
+    <h2>Cancel Booking</h2>
+    <div class="booking-details">
+        <p>Are you sure you want to cancel this booking?</p>
+        <ul>
+            <li>Date: {{ booking.booking_date }}</li>
+            <li>Time: {{ booking.booking_time }}</li>
+            <li>Number of guests: {{ booking.number_of_guests }}</li>
+            <li>Table: {{ booking.table.table_number }}</li>
+        </ul>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="cancel-button">Confirm Cancellation</button>
+        <a href="{% url 'booking_list' %}" class="back-button">Back to Bookings</a>
+    </form>
+</div>
+{% endblock %}
