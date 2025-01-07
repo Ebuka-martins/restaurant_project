@@ -1,36 +1,91 @@
 <!-- booking/templates/booking/base.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Booking</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            {% if user.is_authenticated %}
-                <a href="{% url 'booking_list' %}">My Bookings</a>
-                <a href="{% url 'make_booking' %}">Make Booking</a>
-                <a href="{% url 'logout' %}">Logout</a>
-                <span style="color: white; float: right;">Welcome, {{ user.username }}</span>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-            {% endif %}
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="container nav-container">
+                <div class="logo">
+                    <a href="{% url 'booking_list' %}">
+                        <i class="fas fa-utensils"></i>
+                        <span>Restaurant Name</span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'booking_list' %}" class="nav-link">
+                            <i class="fas fa-calendar-alt"></i> My Bookings
+                        </a>
+                        <a href="{% url 'make_booking' %}" class="nav-link">
+                            <i class="fas fa-plus-circle"></i> Make Booking
+                        </a>
+                        <div class="user-menu">
+                            <span class="welcome-text">Welcome, {{ user.username }}</span>
+                            <a href="{% url 'logout' %}" class="nav-link logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="nav-link login-btn">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
         </nav>
     </header>
     
-    <main>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="message {{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        
-        {% block content %}
-        {% endblock %}
+    <main class="main-content">
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message {{ message.tags }} fade-in">
+                        <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                    <p><i class="fas fa-envelope"></i> info@restaurant.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Restaurant St, City</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Friday: 12:00 - 22:00</p>
+                    <p>Saturday - Sunday: 12:00 - 23:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Restaurant Name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
