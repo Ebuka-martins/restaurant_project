@@ -1,0 +1,51 @@
+{# booking/templates/booking/analytics_dashboard.html #}
+
+{% extends 'booking/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <h1 class="text-2xl font-bold mb-6">Booking Analytics Dashboard</h1>
+
+    <!-- Date Range Information -->
+    <div class="bg-gray-100 p-4 rounded-lg mb-6">
+        <p>Showing data from {{ date_range.start }} to {{ date_range.end }}</p>
+    </div>
+
+    <!-- Booking Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-2">Total Bookings</h2>
+            <p class="text-3xl">{{ analytics.total_bookings|default:"0" }}</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-2">Total Guests</h2>
+            <p class="text-3xl">{{ analytics.total_guests|default:"0" }}</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-2">Cancelled Bookings</h2>
+            <p class="text-3xl">{{ analytics.cancelled_bookings|default:"0" }}</p>
+        </div>
+    </div>
+
+    <!-- Revenue Information -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-2">Total Revenue</h2>
+            <p class="text-3xl">${{ revenue.total_revenue|default:"0"|floatformat:2 }}</p>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold mb-2">Average Revenue per Booking</h2>
+            <p class="text-3xl">${{ revenue.avg_revenue_per_booking|default:"0"|floatformat:2 }}</p>
+        </div>
+    </div>
+
+    <!-- Customer Feedback -->
+    <div class="bg-white p-4 rounded-lg shadow mb-6">
+        <h2 class="text-lg font-semibold mb-2">Average Customer Rating</h2>
+        <p class="text-3xl">{{ feedback.avg_rating|default:"0"|floatformat:1 }} / 5.0</p>
+    </div>
+</div>
+{% endblock %}

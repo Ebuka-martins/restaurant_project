@@ -2,7 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseForbidden
-from .models import Booking, Table
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum, Avg
+from django.db.models.functions import ExtractMonth
+from datetime import datetime, timedelta
+from .models import Booking, Table, BookingAnalytics, CustomerInsights, RevenueMetrics, CustomerFeedback
 from .forms import BookingForm
 from .utils import send_booking_confirmation, send_cancellation_confirmation  # Import email utility functions
 
@@ -75,3 +80,50 @@ def menu_view(request):
         'menu_items': menu_items,
     }
     return render(request, 'booking/menu.html', context)
+
+# Analytics Dashboard View
+class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'booking/analytics_dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        end_date = datetime.now().date()
+        start_date = end_date - timedelta(days=30)
+
+        # Get booking analytics
+        analytics = BookingAnalytics.objects.filter(
+            date__range=[start_date, end_date]
+        ).aggregate(
+            total_bookings=Sum('total_bookings'),
+            total_guests=Sum('total_guests'),
+            cancelled_bookings=Sum('cancelled_bookings')
+        )
+        print("Analytics:", analytics)  # Debugging
+
+        # Get revenue metrics
+        revenue = RevenueMetrics.objects.filter(
+            date__range=[start_date, end_date]
+        ).aggregate(
+            total_revenue=Sum('total_revenue'),
+            avg_revenue_per_booking=Avg('avg_revenue_per_booking')
+        )
+        print("Revenue:", revenue)  # Debugging
+
+        # Get customer feedback summary
+        feedback = CustomerFeedback.objects.filter(
+            created_at__date__range=[start_date, end_date]
+        ).aggregate(
+            avg_rating=Avg('rating')
+        )
+        print("Feedback:", feedback)
+
+        context.update({
+            'analytics': analytics,
+            'revenue': revenue,
+            'feedback': feedback,
+            'date_range': {
+                'start': start_date,
+                'end': end_date
+            }
+        })
+        return context

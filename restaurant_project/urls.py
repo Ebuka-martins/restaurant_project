@@ -19,6 +19,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from booking import views
+# from .views import AnalyticsDashboardView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('menu/', views.menu_view, name='menu'),
     path('booking/<int:booking_id>/cancel/', views.cancel_booking, name='cancel_booking'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('analytics-dashboard/', views.AnalyticsDashboardView.as_view(), name='analytics_dashboard'),
 ]

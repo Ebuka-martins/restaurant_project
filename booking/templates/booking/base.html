@@ -16,7 +16,7 @@
                 <div class="logo">
                     <a href="{% url 'booking_list' %}">
                         <i class="fas fa-utensils"></i>
-                        <span>Restaurant Name</span>
+                        <span>Phantom Restaurant</span>
                     </a>
                 </div>
                 <div class="nav-links">
@@ -26,6 +26,9 @@
                         </a>
                         <a href="{% url 'make_booking' %}" class="nav-link">
                             <i class="fas fa-plus-circle"></i> Make Booking
+                        </a>
+                        <a href="{% url 'analytics_dashboard' %}" class="nav-link">
+                            <i class="fas fa-chart-bar"></i> Analytics Dashboard
                         </a>
                         <div class="user-menu">
                             <span class="welcome-text">Welcome, {{ user.username }}</span>
@@ -76,9 +79,12 @@
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                        aria-label="visit our facebook page (open in a new tab)"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                        aria-label="visit our instagram page (open in a new tab)"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/?lang=en" target="_blank" rel="noopener"
+                        aria-label="visit our X page (open in a new tab)"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
