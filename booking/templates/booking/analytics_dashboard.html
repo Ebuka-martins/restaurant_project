@@ -1,51 +1,94 @@
-{# booking/templates/booking/analytics_dashboard.html #}
-
 {% extends 'booking/base.html' %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold mb-6">Booking Analytics Dashboard</h1>
-
-    <!-- Date Range Information -->
-    <div class="bg-gray-100 p-4 rounded-lg mb-6">
-        <p>Showing data from {{ date_range.start }} to {{ date_range.end }}</p>
+<div class="analytics-container">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Analytics Dashboard</h1>
+    </div>
+       <!-- Date Range Information -->
+    <div class="date-range-info">
+        <p class="date-range-text">
+            <i class="fas fa-calendar-alt"></i>
+            Showing data from {{ date_range.start|date:"M d, Y" }} to {{ date_range.end|date:"M d, Y" }}
+        </p>
     </div>
 
-    <!-- Booking Statistics -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h2 class="text-lg font-semibold mb-2">Total Bookings</h2>
-            <p class="text-3xl">{{ analytics.total_bookings|default:"0" }}</p>
+    <!--  Booking Statistics -->
+    <div class="stats-grid">
+        <div class="stat-card bookings-card">
+            <div class="stat-header">
+                <i class="fas fa-book stat-icon"></i>
+                <h2 class="stat-title">Total Bookings</h2>
+            </div>
+            <p class="stat-value">{{ analytics.total_bookings|default:"0" }}</p>
         </div>
-        
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h2 class="text-lg font-semibold mb-2">Total Guests</h2>
-            <p class="text-3xl">{{ analytics.total_guests|default:"0" }}</p>
+
+        <!-- Guests Card -->
+        <div class="stat-card guests-card">
+            <div class="stat-header">
+                <i class="fas fa-users stat-icon"></i>
+                <h2 class="stat-title">Total Guests</h2>
+            </div>
+            <p class="stat-value">{{ analytics.total_guests|default:"0" }}</p>
         </div>
-        
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h2 class="text-lg font-semibold mb-2">Cancelled Bookings</h2>
-            <p class="text-3xl">{{ analytics.cancelled_bookings|default:"0" }}</p>
+
+        <!-- Cancellations Card -->
+        <div class="stat-card cancellations-card">
+            <div class="stat-header">
+                <i class="fas fa-times-circle stat-icon"></i>
+                <h2 class="stat-title">Cancelled Bookings</h2>
+            </div>
+            <p class="stat-value">{{ analytics.cancelled_bookings|default:"0" }}</p>
+            <p class="secondary-text">Cancellation Rate: {{ cancellation_rate|floatformat:1 }}%</p>
+        </div>
+
+        <!-- Revenue information -->
+        <div class="stat-card revenue-card">
+            <div class="stat-header">
+                <i class="fas fa-dollar-sign stat-icon"></i>
+                <h2 class="stat-title">Total Revenue</h2>
+            </div>
+            <p class="stat-value">${{ revenue.total_revenue|default:"0"|floatformat:2 }}</p>
+        </div>
+
+        <!-- Average Revenue Card -->
+        <div class="stat-card average-card">
+            <div class="stat-header">
+                <i class="fas fa-chart-line stat-icon"></i>
+                <h2 class="stat-title">Average Revenue per Booking</h2>
+            </div>
+            <p class="stat-value">${{ revenue.avg_revenue_per_booking|default:"0"|floatformat:2 }}</p>
+        </div>
+
+        <!-- customer Feedback -->
+        <div class="stat-card feedback-card">
+            <div class="stat-header">
+                <i class="fas fa-star stat-icon"></i>
+                <h2 class="stat-title">Customer Rating</h2>
+            </div>
+            <p class="stat-value">{{ feedback.avg_rating|default:"0"|floatformat:1 }} / 5.0</p>
+            <p class="secondary-text">Based on {{ feedback.total_reviews|default:"0" }} reviews</p>
         </div>
     </div>
 
-    <!-- Revenue Information -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h2 class="text-lg font-semibold mb-2">Total Revenue</h2>
-            <p class="text-3xl">${{ revenue.total_revenue|default:"0"|floatformat:2 }}</p>
-        </div>
-        
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h2 class="text-lg font-semibold mb-2">Average Revenue per Booking</h2>
-            <p class="text-3xl">${{ revenue.avg_revenue_per_booking|default:"0"|floatformat:2 }}</p>
-        </div>
+    {% if not analytics.total_bookings and not revenue.total_revenue and not feedback.avg_rating %}
+    <div class="no-data-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>No data available for the selected date range. Try making some bookings first!</p>
     </div>
+    {% endif %}
 
-    <!-- Customer Feedback -->
-    <div class="bg-white p-4 rounded-lg shadow mb-6">
-        <h2 class="text-lg font-semibold mb-2">Average Customer Rating</h2>
-        <p class="text-3xl">{{ feedback.avg_rating|default:"0"|floatformat:1 }} / 5.0</p>
+    {% if debug %}
+    <div class="debug-section">
+        <h3 class="debug-title">Debug Information</h3>
+        <div class="debug-content">
+            <pre>
+Analytics: {{ analytics|pprint }}
+Revenue: {{ revenue|pprint }}
+Feedback: {{ feedback|pprint }}
+            </pre>
+        </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
