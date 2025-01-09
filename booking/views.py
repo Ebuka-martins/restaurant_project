@@ -7,7 +7,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Avg, Count
 from django.db.models.functions import ExtractMonth
 from datetime import datetime, timedelta
-from .models import Booking, Table, BookingAnalytics, CustomerInsights, RevenueMetrics, CustomerFeedback
+from .models import (
+    Booking, 
+    Table, 
+    BookingAnalytics, 
+    CustomerInsights, 
+    RevenueMetrics, 
+    CustomerFeedback
+)
 from .forms import BookingForm
 from .utils import send_booking_confirmation, send_cancellation_confirmation
 from django.conf import settings
@@ -37,7 +44,7 @@ def make_booking(request):
             if available_table:
                 booking.table = available_table
                 booking.save()
-                
+
                 # Update analytics
                 today = datetime.now().date()
                 analytics, created = BookingAnalytics.objects.get_or_create(
@@ -118,10 +125,66 @@ def cancel_booking(request, booking_id):
 @login_required
 def delete_all_bookings(request):
     if request.method == 'POST':
-        # Delete all bookings for the current user
-        Booking.objects.filter(user=request.user).delete()
-        messages.success(request, 'All bookings have been successfully deleted.')
+        user = request.user
+
+        # Retrieve all user bookings
+        user_bookings = Booking.objects.filter(user=user)
+        booking_ids = list(user_bookings.values_list('id', flat=True))
+
+        # Delete related customer feedback
+        CustomerFeedback.objects.filter(booking__id__in=booking_ids).delete()
+
+        # Delete user bookings
+        user_bookings.delete()
+
+        # Recalculate customer insights for the user
+        insights, _ = CustomerInsights.objects.get_or_create(user=user)
+        insights.total_bookings = 0
+        insights.cancelled_bookings = 0
+        insights.avg_group_size = 0
+        insights.total_spent = 0
+        insights.last_visit = None
+        insights.preferred_dining_time = None
+        insights.save()
+
+        # Update BookingAnalytics
+        for analytics in BookingAnalytics.objects.all():
+            date = analytics.date
+            bookings = Booking.objects.filter(booking_date=date)
+
+            analytics.total_bookings = bookings.count()
+            analytics.confirmed_bookings = bookings.filter(status='confirmed').count()
+            analytics.cancelled_bookings = bookings.filter(status='cancelled').count()
+            analytics.total_guests = bookings.aggregate(total=Sum('number_of_guests'))['total'] or 0
+            analytics.avg_guests_per_booking = (
+                analytics.total_guests / analytics.total_bookings if analytics.total_bookings > 0 else 0
+            )
+            analytics.save()
+
+        # Update RevenueMetrics
+        for revenue in RevenueMetrics.objects.all():
+            date = revenue.date
+            bookings = Booking.objects.filter(booking_date=date)
+
+            total_revenue = bookings.aggregate(
+                total=Sum('number_of_guests') * 50  # Replace with actual revenue calculation
+            )['total'] or 0
+
+            total_guests = bookings.aggregate(total=Sum('number_of_guests'))['total'] or 0
+
+            revenue.total_revenue = total_revenue
+            revenue.avg_revenue_per_booking = (
+                total_revenue / bookings.count() if bookings.exists() else 0
+            )
+            revenue.avg_revenue_per_guest = (
+                total_revenue / total_guests if total_guests > 0 else 0
+            )
+            revenue.save()
+
+        # Confirmation message
+        messages.success(request, 'All bookings and analytics recalculated successfully.')
         return redirect('booking_list')
+
     return render(request, 'booking/delete_all_bookings.html')
 
 class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
@@ -132,7 +195,7 @@ class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
         end_date = datetime.now().date()
         start_date = end_date - timedelta(days=30)  # Last 30 days
 
-        # Get booking analytics with detailed debug logging
+        # Get booking analytics
         analytics = BookingAnalytics.objects.filter(
             date__range=[start_date, end_date]
         ).aggregate(
@@ -181,7 +244,7 @@ class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
 def menu_view(request):
     menu_items = MenuItem.objects.filter(available=True).order_by('category', 'name')
     categories = MenuItem.CATEGORY_CHOICES
-    
+
     context = {
         'categories': categories,
         'menu_items': menu_items,
