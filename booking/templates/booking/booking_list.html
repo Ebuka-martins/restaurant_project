@@ -1,4 +1,3 @@
-<!-- booking/templates/booking/booking_list.html -->
 {% extends 'booking/base.html' %}
 
 {% block content %}
@@ -22,5 +21,8 @@
     
     <div class="booking-actions">
         <a href="{% url 'make_booking' %}" class="book-button">Make New Booking</a>
+        {% if bookings %}
+            <a href="{% url 'delete_all_bookings' %}" class="delete-button">Delete All Bookings</a>
+        {% endif %}
     </div>
 {% endblock %}

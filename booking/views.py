@@ -115,6 +115,15 @@ def cancel_booking(request, booking_id):
         
     return render(request, 'booking/cancel_booking.html', {'booking': booking})
 
+@login_required
+def delete_all_bookings(request):
+    if request.method == 'POST':
+        # Delete all bookings for the current user
+        Booking.objects.filter(user=request.user).delete()
+        messages.success(request, 'All bookings have been successfully deleted.')
+        return redirect('booking_list')
+    return render(request, 'booking/delete_all_bookings.html')
+
 class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'booking/analytics_dashboard.html'
 

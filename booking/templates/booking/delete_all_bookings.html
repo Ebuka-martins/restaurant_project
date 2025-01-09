@@ -1,0 +1,16 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+<div class="delete-all-bookings-container">
+    <h2>Delete All Bookings</h2>
+    <div class="warning-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Warning: This action cannot be undone. Are you sure you want to delete all your bookings?</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="delete-button">Confirm Delete All</button>
+        <a href="{% url 'booking_list' %}" class="back-button">Cancel</a>
+    </form>
+</div>
+{% endblock %}

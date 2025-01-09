@@ -29,4 +29,5 @@ urlpatterns = [
     path('booking/<int:booking_id>/cancel/', views.cancel_booking, name='cancel_booking'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('analytics-dashboard/', views.AnalyticsDashboardView.as_view(), name='analytics_dashboard'),
+    path('delete-all-bookings/', views.delete_all_bookings, name='delete_all_bookings'),
 ]
