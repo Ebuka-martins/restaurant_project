@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.value = 20;
                 Swal.fire({
                     title: 'Large Group Booking',
-                    text: 'For parties larger than 20, please contact us directly at +353 234 567 890 for special arrangements.',
+                    text: 'For parties larger than 20, please contact us directly at +353 899 728 953 for special arrangements.',
                     icon: 'info',
                     confirmButtonText: 'Got it!',
                     confirmButtonColor: '#3498db',
