@@ -40,7 +40,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.value < 1) this.value = 1;
             if (this.value > 20) {
                 this.value = 20;
-                alert('For parties larger than 20, please contact us directly.');
+                Swal.fire({
+                    title: 'Large Group Booking',
+                    text: 'For parties larger than 20, please contact us directly at +353 234 567 890 for special arrangements.',
+                    icon: 'info',
+                    confirmButtonText: 'Got it!',
+                    confirmButtonColor: '#3498db',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
             }
         });
     }
@@ -51,13 +63,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const date = new Date(dateInput.value);
             if (date < new Date()) {
                 e.preventDefault();
-                alert('Please select a future date.');
+                Swal.fire({
+                    title: 'Invalid Date',
+                    text: 'Please select a future date.',
+                    icon: 'error',
+                    confirmButtonColor: '#3498db'
+                });
                 return;
             }
 
             if (!timeSelect.value) {
                 e.preventDefault();
-                alert('Please select a time slot.');
+                Swal.fire({
+                    title: 'Time Required',
+                    text: 'Please select a time slot.',
+                    icon: 'warning',
+                    confirmButtonColor: '#3498db'
+                });
                 return;
             }
         });
@@ -68,7 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         
         if (selected < today) {
-            alert('Please select a future date.');
+            Swal.fire({
+                title: 'Invalid Date',
+                text: 'Please select a future date.',
+                icon: 'error',
+                confirmButtonColor: '#3498db'
+            });
             e.target.value = '';
         }
     }
