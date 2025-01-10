@@ -11,14 +11,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Default to False for production
 
 # Update ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS for Heroku
 ALLOWED_HOSTS = [
     'restaurant-project-524b51fc1cda.herokuapp.com',
-    'restaurant-project-524b51fc1cda.herokuapp.com/',  # with trailing slash
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -72,7 +71,11 @@ WSGI_APPLICATION = 'restaurant_project.wsgi.application'
 
 # Database configuration
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL', ''),
+        conn_max_age=600,
+        ssl_require=True  # Enforce SSL for secure database connections
+    )
 }
 
 # Password validation
