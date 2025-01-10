@@ -14,9 +14,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Update ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS for Heroku
-ALLOWED_HOSTS = ['restaurant-project-524b51fc1cda.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'restaurant-project-524b51fc1cda.herokuapp.com',
+    'restaurant-project-524b51fc1cda.herokuapp.com/',  # with trailing slash
+    'localhost',
+    '127.0.0.1'
+]
+
 CSRF_TRUSTED_ORIGINS = [
     'https://restaurant-project-524b51fc1cda.herokuapp.com',
+    'http://restaurant-project-524b51fc1cda.herokuapp.com',
     'https://*.gitpod.io',
     'https://*.codeinstitute-ide.net',
 ]
