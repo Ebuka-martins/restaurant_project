@@ -1,4 +1,5 @@
 asgiref==3.8.1
+cloudinary==1.42.1
 dj-database-url==2.3.0
 Django==4.2.17
 gunicorn==23.0.0
