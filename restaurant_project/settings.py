@@ -1,23 +1,25 @@
 import os
 from pathlib import Path
+import dj_database_url
 
-# restaurant_project/settings.py
+# Load environment variables from env.py if it exists
+if os.path.isfile("env.py"):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
-SECRET_KEY = 'django-insecure-n0$lms)029$kgd3kv4siwyadbc%_36hxgoev*7urcdk4-#!g_o'
-DEBUG = True
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-# Update CSRF settings to allow Gitpod workspace
+# Update ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS for Heroku
+ALLOWED_HOSTS = ['restaurant-project.herokuapp.com', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = [
+    'https://restaurant-project.herokuapp.com',
     'https://*.gitpod.io',
-    'https://*.codeinstitute-ide.net'
+    'https://*.codeinstitute-ide.net',
 ]
-
-# Update ALLOWED_HOSTS
-ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add whitenoise middleware for serving static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,12 +63,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'restaurant_project.wsgi.application'
 
-# Database
+# Database configuration
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600
+    )
 }
 
 # Password validation
@@ -90,8 +93,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+# Static files configuration for Heroku
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Login and logout redirects
 LOGIN_REDIRECT_URL = 'booking_list'
@@ -103,7 +108,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email settings for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Uncomment the following for production settings
+# Uncomment the following for production email settings
 # EMAIL_HOST = 'smtp.your-email-provider.com'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
