@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add whitenoise middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'csp.middleware.CSPMiddleware',  # Added for Content Security Policy
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -48,6 +49,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Frame Options and Content Security Policy
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+CSP_FRAME_ANCESTORS = ["'self'", 'http://ami.responsivedesign.is', 'https://ami.responsivedesign.is']
 
 ROOT_URLCONF = 'restaurant_project.urls'
 

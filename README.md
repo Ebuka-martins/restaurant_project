@@ -1,3 +1,26 @@
+# PHANTOM RESTAURANT BOOKING SYSTEM
+The Restaurant Booking System is a sophisticated Django-based web application designed to streamline restaurant table reservations and management. This system offers a seamless experience for both customers and restaurant staff, featuring real-time table availability, booking management, and comprehensive analytics.
+The platform allows registered users to make restaurant reservations, manage their bookings, and provide feedback about their dining experience. For restaurant staff, it provides powerful tools to track bookings, analyze customer patterns, and monitor revenue metrics through an intuitive dashboard.
+
+ Here is the link to the Restaurant Booking System-heroku where every bookings are being made [link](https://restaurant-project-524b51fc1cda.herokuapp.com/)
+
+
+# Key Features
+- User authentication and personalized booking management
+- Real-time table availability checking
+- Automated booking confirmation system
+- Detailed analytics and revenue tracking
+- Customer feedback collection
+- Comprehensive booking management (create, view, cancel, delete)
+- Staff dashboard for monitoring business metrics
+
+
+
+
+
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome Ebuka MartinsEchesi,
