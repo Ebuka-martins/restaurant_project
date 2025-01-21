@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Default to False
+DEBUG = os.environ.get('DEBUG', 'False') == 'False'  # Default to False
 
 # Update ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS for Heroku
 ALLOWED_HOSTS = [
