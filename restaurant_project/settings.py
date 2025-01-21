@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
-DEBUG = os.environ.get('DEBUG', 'False') == 'False'  # Default to False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Default to False
 
 # Update ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS for Heroku
 ALLOWED_HOSTS = [
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'csp.middleware.CSPMiddleware',  # Added for Content Security Policy
+    'csp.middleware.CSPMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,13 +76,23 @@ WSGI_APPLICATION = 'restaurant_project.wsgi.application'
 
 # Database configuration
 db_url = os.environ.get('DATABASE_URL', '')
-DATABASES = {
-    'default': dj_database_url.parse(
-        db_url,
-        conn_max_age=600,
-        ssl_require=True  # Enforce SSL for secure database connections
-    )
-}
+
+# Try to use DATABASE_URL if available, otherwise fall back to SQLite
+if db_url:
+    DATABASES = {
+        'default': dj_database_url.parse(
+            db_url,
+            conn_max_age=600,
+            ssl_require=True  # Enforce SSL for secure database connections
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
