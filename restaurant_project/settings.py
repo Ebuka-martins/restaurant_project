@@ -11,13 +11,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
 SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
-DEBUG = os.environ.get('DEBUG', 'False') == 'False'  # Default to False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Default to False
 
 # Update ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS for Heroku
 ALLOWED_HOSTS = [
     'restaurant-project-524b51fc1cda.herokuapp.com',
     'localhost',
     '127.0.0.1',
+    '*.codeinstitute-ide.net', 
+    '8000-ebukamartin-restaurantp-r18xpwuiruo.ws.codeinstitute-ide.net'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -25,6 +27,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://restaurant-project-524b51fc1cda.herokuapp.com',
     'https://*.gitpod.io',
     'https://*.codeinstitute-ide.net',
+    'https://8000-ebukamartin-restaurantp-r18xpwuiruo.ws.codeinstitute-ide.net'
 ]
 
 # Application definition
