@@ -27,8 +27,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://restaurant-project-524b51fc1cda.herokuapp.com',
     'https://*.gitpod.io',
     'https://*.codeinstitute-ide.net',
-    'https://8000-ebukamartin-restaurantp-r18xpwuiruo.ws.codeinstitute-ide.net',
-    'https://ui.dev/amiresponsive'
+    'https://8000-ebukamartin-restaurantp-r18xpwuiruo.ws.codeinstitute-ide.net'
 ]
 
 # Application definition
