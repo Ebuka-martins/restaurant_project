@@ -49,6 +49,8 @@ The platform allows registered users to make restaurant reservations, manage the
    - [DBdiagram Charts](#DBdiagram-Charts)
    - [Relationship](#Relationship)
 - [Design](#Design)
+- [Technologies](#Technologies)
+- [Technologies used to Design the website](#Technologies-used-to-Design-the-website)
 
 
 
@@ -305,5 +307,42 @@ This is a list of technologies I used to manually test both the code and the acc
 - [ESlint javascript validator](https://eslint.org/) to check javascript code.
 - [pep8 python validator](https://pep8ci.herokuapp.com/#) to check python code.
 
-  
 
+## Testing
+
+Please see [TESTING.md](TESTING.md) for all testing data.
+
+## Deployment
+
+### Important point for this project
+
+This is a django project, as such it has been built with the django framework, in order to maintain a level of security for certain variables they stored within a secret file env.py.  This file **IS NOT** stored within the project, it must be recreated if you are starting a new workspace, please ensure you use your own details for this.
+
+## Local Development and Deployment
+
+- The program was deployed to [Heroku](https://dashboard.heroku.com).
+
+### Local Development
+
+#### How to Fork
+1. Log in (or sign up) to Github.
+2. Go to the repository for this project, [Phantom Restaurant Booking System](https://github.com/Ebuka-martins/restaurant_project.git)
+3. Click the Fork button in the top right corner.
+
+#### How to Clone
+
+To clone the repository:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository for this project, [Phantom Restaurant Booking System](https://github.com/Ebuka-martins/restaurant_project.git)
+3. Click on the code button, select whether you would like to clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+
+### Important Information about forking a repository
+
+- Forking allows you to make any changes without affecting original project. You can send the the suggestions by submitting a pull request. Then the Project Owner can review the pull request before accepting the suggestions and merging them.
+
+- When you have fork to a repository, you don't have access to files locally on your device, for getting access you will need to clone the forked repository.
+- For more details on how to fork the repo, in order to for example suggest any changes to the project you can:
+[Forking a Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
