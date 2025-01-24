@@ -51,7 +51,16 @@ The platform allows registered users to make restaurant reservations, manage the
 - [Design](#Design)
 - [Technologies](#Technologies)
 - [Technologies used to Design the website](#Technologies-used-to-Design-the-website)
-
+- [Testing](#Testing)
+- [Deployment](#Deployment)
+- [Technologies used to Design the website](#Technologies-used-to-Design-the-website)
+   - [Important point for this project](#Important-point-for-this-project)
+- [Local Development and Deployment](#Local-Development-and-Deployment)
+   - [Local Development](#Local-Development)
+       - [How to Fork](#How-to-Fork)
+       - [How to Clone](#How-to-Clone)
+       - [Important Information about forking a repository](#Important-Information-about-forking-a-repository)
+  
 
 
 
@@ -310,7 +319,7 @@ This is a list of technologies I used to manually test both the code and the acc
 
 ## Testing
 
-Please see [TESTING.md](TESTING.md) for all testing data.
+The portal has been well tested and the results can be viewed [here - TESTING](TESTING.md)
 
 ## Deployment
 
