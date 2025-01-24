@@ -286,18 +286,24 @@ This is a list of technologies I used while building this site:
 
 
 
-This is a list of technologies I used to design this website:
+## Technologies used to Design the website
 ***
 
 - [TechSini](https://techsini.com/multi-mockup/) To create mockup image.
 - [FontAwesome](https://fontawesome.com/) Icons.
 - [Goggle Fonts](https://fonts.google.com/) For website fonts.
-- [Favicon](https://favicon.io/) To create favicon for the website.
-- [Open art AI](https://openart.ai/home) To create the background image.
-- [ChatGPT](https://chat.openai.com/) used for spell checking, grammar, readability, and creating blog posts.
-- [Nimbus Screenshot](https://nimbusweb.me/) used for screenshots
-- My own photo's.
+- [![Favicon](https://img.shields.io/badge/favicon-grey?logo=favicon&logoColor=3e3e7a)](https://favicon.io/) used for creating the website Logo.
 
+This is a list of technologies I used to manually test both the code and the accessibility:
+***
+
+- [ColorPicker](https://coolors.co/) to give different color compactability.
+- Google Chrome's [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) to check accessibility.
+- [WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/) used to spot check individual pages.
+- [W3C HTML Markup Validator](https://validator.w3.org/) to check HTML code.
+- [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) to check CSS code.
+- [ESlint javascript validator](https://eslint.org/) to check javascript code.
+- [pep8 python validator](https://pep8ci.herokuapp.com/#) to check python code.
 
   
 

@@ -18,9 +18,10 @@ ALLOWED_HOSTS = [
     'restaurant-project-524b51fc1cda.herokuapp.com',
     'localhost',
     '127.0.0.1',
-    '*.codeinstitute-ide.net', 
+    '*.codeinstitute-ide.net',
     '8000-ebukamartin-restaurantp-r18xpwuiruo.ws.codeinstitute-ide.net'
 ]
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://restaurant-project-524b51fc1cda.herokuapp.com',
