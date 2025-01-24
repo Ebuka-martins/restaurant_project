@@ -48,6 +48,8 @@ The platform allows registered users to make restaurant reservations, manage the
 - [Entity Relationship Diagram](#Entity-Relationship-Diagram)
    - [DBdiagram Charts](#DBdiagram-Charts)
    - [Relationship](#Relationship)
+- [Design](#Design)
+
 
 
 
@@ -241,7 +243,60 @@ As part of this process I used a kanban board to monitor user stories, and ensur
 ## Design 
 ### Color Design
 
+  ![Color Picker](booking/static/booking/image/color-picker.png) 
 
+  - White color was used as the font text of the website and the background color of the website.
+  - Charcoal color was used as the design background for button, tables and hovering color that appears on the booking page section when the you cursor.
+  - Celestial Blue was used as the background color of the button and on the details section on the book table page section.
+  - Fern Green color was also used as background color for make booking buttons at my bookings page.
+  - Cornsilk color was also used as the warning background color that appears when you want to delete all bookings.
+  - Rusty Red Color is used as the background color for cancel booking buttons at my bookings page.
+
+## Technologies
+
+This is a list of technologies I used while building this site:
+***
+
+- Django Framework - version 4.2.17
+- Django Crispy forms - version 2.1
+- gunicorn - version 20.1.0
+- psycopg2-binary - version 2.9.10
+- coverage - version 7.6.10
+- whitenoise - version 6.8.2
+- dj-database-url - version 2.3.0
+- asgiref - version 3.8.1
+- iniconfig - version 2.0.0
+- pluggy - version 1.5.0
+- pytest - version 8.3.4
+- pytest-django - version 4.9.0
+- python-dotenv - version 1.0.1
+- sqlparse - version 0.5.3
+- pip - version 24.0
+- [![Python](https://img.shields.io/badge/Python-darkblue?logo=python&logoColor=BA8E23)](https://www.python.org/) used for the functionality of the inside gubins of the website.
+- [![HTML](https://img.shields.io/badge/HTML-grey?logo=html5&logoColor=E34F26)](https://en.wikipedia.org/wiki/HTML) used for the main site content.
+- [![CSS](https://img.shields.io/badge/CSS-grey?logo=css3&logoColor=1572B6)](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
+- [![JavaScript](https://img.shields.io/badge/JavaScript-grey?logo=javascript&logoColor=F7DF1E)](https://www.javascript.com) used for user interaction on the site.
+- [![Git](https://img.shields.io/badge/Git-grey?logo=git&logoColor=F05032)](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
+- [![Gitpod](https://img.shields.io/badge/Gitpod-grey?logo=gitpod&logoColor=FFAE33)](https://gitpod.io) used as a cloud-based IDE for development.
+- [![GitHub](https://img.shields.io/badge/GitHub-grey?logo=github&logoColor=181717)](https://github.com) used for secure online code storage.
+- [![Heroku](https://img.shields.io/badge/Heroku-purple?logo=heroku&logoColor=A020F0)](https://www.heroku.com/) Used to deploy the project.
+- [![Google Dev Tools](https://img.shields.io/badge/Google-yellow?logo=developer.chrome&logoColor=6C660F)](https://developer.chrome.com/docs/devtools) Dev Tools Used For page inspection and checking website.
+- [![Code Institute](https://img.shields.io/badge/Code-Institute-orange?logo=code-institute&logoColor=orange)](https://codeinstitute.net/global/) Gitpod Template - to generate the workspace for the project.
+- [![Dbdiagram](https://img.shields.io/badge/Dbdiagram-blue?logo=Dbdiagram&logoColor=0000ff)](https://dbdiagram.io/home) used to make the ERD's for database interactions.
+
+
+
+This is a list of technologies I used to design this website:
+***
+
+- [TechSini](https://techsini.com/multi-mockup/) To create mockup image.
+- [FontAwesome](https://fontawesome.com/) Icons.
+- [Goggle Fonts](https://fonts.google.com/) For website fonts.
+- [Favicon](https://favicon.io/) To create favicon for the website.
+- [Open art AI](https://openart.ai/home) To create the background image.
+- [ChatGPT](https://chat.openai.com/) used for spell checking, grammar, readability, and creating blog posts.
+- [Nimbus Screenshot](https://nimbusweb.me/) used for screenshots
+- My own photo's.
 
 
   
