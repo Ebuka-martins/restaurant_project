@@ -4,16 +4,20 @@ Return to [README](README.md).
 
 ## SYSTEM Testing
 
-I conducted both automated and manual testing for the
+I conducted both Manual and Automatic testing for the
 - **Booking List**
 - **Create Booking**
 - **Cancel Booking**
 - **DeleteAll Bookings**
 - **Analytics Dashboard**
 
+---
+
+
 ### Manual Testing Table
 
 In total I constructed 5 tests to test the majority of the functions within the Table, broken down into 5 sections:
+This expanded table provides a comprehensive manual breakdown of expected outcomes, covering technical, functional, and data integrity aspects of each test scenario.
 
  | **Category** | **Test Method**| **Expected Outcome** | **Detailed Validation Criteria** | **passed** | **comments** |
 | --- | --- | --- | --- | --- | --- |
@@ -48,3 +52,111 @@ In total I constructed 5 tests to test the majority of the functions within the 
 |  |  | Data accuracy | Matches pre-created test data | Yes | - |
 
 ---
+
+### Automatic Testing Table
+
+| ![Total app tests](booking/static/booking/image/ovrall-test.png) | ![BookingList model tests](booking/static/booking/image/Booking-List.png) |
+|:-------------------------------------------:|:-------------------------------------------:|
+| **Overall Test output** | **BookingList Test Output** |
+| ![CreateBooking model tests](booking/static/booking/image/Create-Booking.png) | ![CancelBooking model tests](booking/static/booking/image/Cancel-Booking.png) |
+| **CreateBooking Test Output** | **CancelBooking Test Output** |
+| ![Analytic model tests](booking/static/booking/image/Analytics-Dashboard.png) |
+| **Analytics Test Output** |
+
+---
+
+## Overall Performance
+
+The complete site was tested on the lighthouse facility in Google Developer Tools to assess the overall performance of the site. The site meets the pass criteria and you can see the results in the below table.
+
+| Page         | Screenshot                                                      | Notes          |
+|--------------|-----------------------------------------------------------------|----------------|
+|Login-Section page   |![screenshot](booking/static/booking/image/login-section.png) |  Meets criteria|                        
+|MyBooking-Section page   |![screenshot](booking/static/booking/image/mybooking-section.png) |  Meets criteria|                        
+| MakeBooking-Section Page |![screenshot](booking/static/booking/image/makebooking-section.png) |  Meets criteria |                        
+| Analytics-Section Page |![screenshot](booking/static/booking/image/Analytics-DashboardSection.png) |  Meets criteria |                        
+| DeleteAll-Section Page |![screenshot](booking/static/booking/image/DeleteAll-section.png) |  Meets criteria |                        
+
+---
+
+## Responsiveness & Compactability Testing
+
+To ensure a broad range of users can successfully use this site, I tested it across the 3 major browsers in both desktop and mobile configuration.
+
+- Chrome Browser
+- Edge Browser
+- Mozilla Firefox Browser
+
+
+For testing compatibility, I created the correct functionality and appearance across devices, the website was tested on the following browsers: Chrome, Firefox and Microsoft Edge.
+
+![screenshot](booking/static/booking/image/navbar-confirmationbig.png)
+
+------
+
+## Code Validation
+
+The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project. The results and screenshots are in the table below.
+
+| Page                 | Screenshot Link                                                                   | Notes  |
+|----------------------|-----------------------------------------------------------------------------------|--------|
+|base.html            |[view here](documents/testing/markup_validator/index.html_validator.png)           | Passed | 
+|login.html            |[view here](documents/testing/markup_validator/login.html_validator.png)           | Passed |
+|makeBooking.html           |[view here](documents/testing/markup_validator/signup.html_validator.png)          | Passed |
+|dashboard.html        |[view here](documents/testing/markup_validator/dashboard.html_validator.png)       | Passed | 
+|my-Booking.html  |[view here](documents/testing/markup_validator/admin_dashboard.html_validator.png) | Passed |
+|CSS       |[view here](booking/static/booking/image/CSS-Validation.png)       | Passed | 
+
+##### back to [top](#table-of-contents)
+
+------
+
+ ## Wave Test Report
+
+  - wave test report was used to test the webpage performance and functions in different environments or at different times.
+
+  
+| Test      | Screenshot                                              | Notes                                                   |
+|-----------|---------------------------------------------------------|---------------------------------------------------------|
+| Wave Test  | ![screenshot](booking/static/booking/image/WaveTest-Report.png)   | Passed - No Error where found. |
+
+------
+
+## JavaScript Testing
+
+### JS Hint
+
+  * All JavaScript code was put though [JS Hint](https://jshint.com/) 
+
+| Test      | Screenshot                                              | Notes                                                   |
+|-----------|---------------------------------------------------------|---------------------------------------------------------|
+| JS Hint   |![screenshot](booking/static/booking/image/JShint-Validation.png)      | Passed - No warnings. 1 undefined variable as expected. |
+
+------
+
+
+## Python Testing
+
+### CI Python Linter
+
+  * All Python code in app.py was put though [CI Python Linter](https://pep8ci.herokuapp.com/) 
+
+| Test      | Screenshot                                                                                   | Notes                                                |
+|----------------------------|-----------------------------------------------------------------------------|------------------------------------------------------|
+| admin.py           |![screenshot](booking/static/booking/image/admin.py.png) |  passed - No warnings|
+| apps.py |![screenshot](booking/static/booking/image/apps.py.png)    |  Passed - No warnings           | 
+| forms.py               |![screenshot](booking/static/booking/image/forms.py.png)      |  passed - No warnings |
+| models.py |![screenshot](booking/static/booking/image/models.py.png)        |  passed - No warnings |
+| settings.py |![screenshot](booking/static/booking/image/settings.py.png)    |  Passed - No warnings   |
+| signals.py |![screenshot](booking/static/booking/image/signals.py.png)    |  Passed - No warnings   |
+| tests.py |![screenshot](booking/static/booking/image/test.py.png)    |  Passed - No warnings   |
+| urls.py |![screenshot](booking/static/booking/image/urls.py.png)    |  Passed - No warnings   |
+| views.py |![screenshot](booking/static/booking/image/views.py.png)    |  Passed - No warnings   |
+
+### Summary
+
+After initially correcting the code format and it passing testing using the CI python linter it seemed that the indentation after breaking a line due to line length wasnt quite aesthetically correct, although meeting pep8 guldlines. The apps.py file was the reverted back to the tested and passed version that was verified by CI python linter, as this meant that  the beautifier tool was not pep8 compliant. As the criteria for this project is that python is to be pep8 compliant, using results and testing of the CI python linter was the most reliable approach.
+
+##### back to [top](#table-of-contents)
+
+------
