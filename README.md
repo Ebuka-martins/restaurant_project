@@ -63,7 +63,7 @@ The platform allows registered users to make restaurant reservations, manage the
        - [Important Information about forking a repository](#Important-Information-about-forking-a-repository)
 - [Credits Accolade](#Credits-Accolade)
    - [Content ](#Content)
-- [knowledgements](#knowledgements)
+- [Aknowledgements](#knowledgements)
 
   
 
