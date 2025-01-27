@@ -263,6 +263,17 @@ As part of this process I used a kanban board to monitor user stories, and ensur
   - Cornsilk color was also used as the warning background color that appears when you want to delete all bookings.
   - Rusty Red Color is used as the background color for cancel booking buttons at my bookings page.
 
+---  
+
+## Wireframe
+  - Wireframes were created for mobile, tablet and desktop using wireframe.cc .
+  
+![Wireframe Mobile](booking/static/booking/image/wireframe-bok.png)
+![Wireframe home](booking/static/booking/image/wireframe-dash.png)
+![Wireframe Mobile](booking/static/booking/image/wireframe-my.png)   
+
+---  
+
 ## Technologies
 
 This is a list of technologies I used while building this site:
@@ -355,3 +366,7 @@ To clone the repository:
 - When you have fork to a repository, you don't have access to files locally on your device, for getting access you will need to clone the forked repository.
 - For more details on how to fork the repo, in order to for example suggest any changes to the project you can:
 [Forking a Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+
+#### back to [top](#table-of-contents)
+
+---

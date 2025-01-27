@@ -2,6 +2,30 @@
 
 Return to [README](README.md).
 
+## Table of contents
+
+  1. [**SYSTEM Testing**](#SYSTEM-Testing)
+     - [**Manual Testing Table**](#Manual-Testing-Table)
+     - [**Automatic Testing Table**](#Automatic-Testing-Table)
+  2. [**Overall Performance**](#Overall-Performance)
+  3. [**Responsiveness & Compactability Testing**](#Responsiveness-&-Compactability-Testing)
+  5. [**Code Validation**](#Code-Validation)
+  6. [**Wave Test Report**](#Wave-Test-Report)
+  7. [**JavaScript Testing**](#JavaScript-Testing)
+        - **JS Hint**
+  7. [**Python Testing**](#Python-Testing)
+     - [**CI Python Linter**](#CI-Python-Linter)
+
+  8. [**Bug Fixes**](#bug-fixes)
+  9. [**Testing User Stories from User Experience (UX) Section**](#testing-user-stories)
+        - **Project Goals**
+        - **User Goals**
+        - 
+  10. [**Other Testing Methods**](#other-testing)
+  11. [**Further Testing**](#further-testing)
+
+  ------
+
 ## SYSTEM Testing
 
 I conducted both Manual and Automatic testing for the
