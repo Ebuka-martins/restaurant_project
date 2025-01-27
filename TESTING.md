@@ -13,17 +13,12 @@ Return to [README](README.md).
   6. [**Wave Test Report**](#Wave-Test-Report)
   7. [**JavaScript Testing**](#JavaScript-Testing)
         - **JS Hint**
-  7. [**Python Testing**](#Python-Testing)
+  8. [**Python Testing**](#Python-Testing)
      - [**CI Python Linter**](#CI-Python-Linter)
+  9. [**Summary**](#Summary)
+   
 
-  8. [**Bug Fixes**](#bug-fixes)
-  9. [**Testing User Stories from User Experience (UX) Section**](#testing-user-stories)
-        - **Project Goals**
-        - **User Goals**
-        - 
-  10. [**Other Testing Methods**](#other-testing)
-  11. [**Further Testing**](#further-testing)
-
+  
   ------
 
 ## SYSTEM Testing
@@ -177,7 +172,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 | urls.py |![screenshot](booking/static/booking/image/urls.py.png)    |  Passed - No warnings   |
 | views.py |![screenshot](booking/static/booking/image/views.py.png)    |  Passed - No warnings   |
 
-### Summary
+## Summary
 
 After initially correcting the code format and it passing testing using the CI python linter it seemed that the indentation after breaking a line due to line length wasnt quite aesthetically correct, although meeting pep8 guldlines. The apps.py file was the reverted back to the tested and passed version that was verified by CI python linter, as this meant that  the beautifier tool was not pep8 compliant. As the criteria for this project is that python is to be pep8 compliant, using results and testing of the CI python linter was the most reliable approach.
 

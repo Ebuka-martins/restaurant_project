@@ -49,6 +49,7 @@ The platform allows registered users to make restaurant reservations, manage the
    - [DBdiagram Charts](#DBdiagram-Charts)
    - [Relationship](#Relationship)
 - [Design](#Design)
+- [Wireframe](#Wireframe)
 - [Technologies](#Technologies)
 - [Technologies used to Design the website](#Technologies-used-to-Design-the-website)
 - [Testing](#Testing)
@@ -60,6 +61,10 @@ The platform allows registered users to make restaurant reservations, manage the
        - [How to Fork](#How-to-Fork)
        - [How to Clone](#How-to-Clone)
        - [Important Information about forking a repository](#Important-Information-about-forking-a-repository)
+- [Credits Accolade](#Credits-Accolade)
+   - [Content ](#Content)
+- [knowledgements](#knowledgements)
+
   
 
 
@@ -267,7 +272,7 @@ As part of this process I used a kanban board to monitor user stories, and ensur
 
 ## Wireframe
   - Wireframes were created for mobile, tablet and desktop using wireframe.cc .
-  
+
 ![Wireframe Mobile](booking/static/booking/image/wireframe-bok.png)
 ![Wireframe home](booking/static/booking/image/wireframe-dash.png)
 ![Wireframe Mobile](booking/static/booking/image/wireframe-my.png)   
@@ -366,6 +371,35 @@ To clone the repository:
 - When you have fork to a repository, you don't have access to files locally on your device, for getting access you will need to clone the forked repository.
 - For more details on how to fork the repo, in order to for example suggest any changes to the project you can:
 [Forking a Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+
+---
+
+ ## Credits Accolade
+
+ ### Content 
+ 
+ - The inspiration was gotten from Josh tried coding who I have been following for almost 1 year and I have learnt alot from.
+ - The name of the project "Phantom Restaurant Booking System" was gotten from [Josh tried coding](https://www.youtube.com/watch?v=ecjaXnL2CUs).
+ - my inspiration was gotten from [Code Institute](https://codeinstitute.net/ie/) Developing with Django lectures.
+ - Heroku for hosting the application: [heroku.com](https://www.heroku.com/)
+ - GitHub icon in the footer was taken from [Font Awesome](https://fontawesome.com/)
+ - ChatGPT for problem solving out of hours and providing help with function formatting.
+ - Sweetalert was used on my project for display limit [Sweet Alert](https://sweetalert2.github.io/).
+ - The favicon logo generator used for this website was gotten from [favicon](https://favicon.io/).
+ - The wireframes created for both mobile, tablet, and laptop used for this game was gotten from [wireframe](https://wireframe.cc/).
+  - The group color text logo munched for this README was gotten from [color co](https://coolors.co/).
+  - The tools used to screenshot various device breakpoint for responsive design for README was gotten from [TechSini](https://techsini.com/multi-mockup/).
+
+---
+
+## Acknowledgements
+- I give Special thanks to my wife Precious Chidimma, my brother John Paul and my parents who have been a great support to me all through this project.
+ - [Kiree Swewi](https://github.com/Swewi) is my friend and he has been a great support to me throughout this project.
+ - [Vernell C](https://github.com/VCGithubCode) is my friend and he has been a great support to me throughout this project.
+ - [Jubril Akolade](https://github.com/Jubrillionaire) was a great mentor to me throughout this project.
+ -  [Code Institute](https://codeinstitute.net/) tutors and Slack community members for their support and help.
+ -  [Developing with Django](https://codeinstitute.net/) tutorial.
+ - [Ovundiano](https://github.com/Ovundiano) was also my friend who has been very supportive to me throughout this project.
 
 #### back to [top](#table-of-contents)
 
