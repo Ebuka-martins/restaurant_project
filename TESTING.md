@@ -100,11 +100,11 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 | Page                 | Screenshot Link                                                                   | Notes  |
 |----------------------|-----------------------------------------------------------------------------------|--------|
-|base.html            |[view here](documents/testing/markup_validator/index.html_validator.png)           | Passed | 
-|login.html            |[view here](documents/testing/markup_validator/login.html_validator.png)           | Passed |
-|makeBooking.html           |[view here](documents/testing/markup_validator/signup.html_validator.png)          | Passed |
-|dashboard.html        |[view here](documents/testing/markup_validator/dashboard.html_validator.png)       | Passed | 
-|my-Booking.html  |[view here](documents/testing/markup_validator/admin_dashboard.html_validator.png) | Passed |
+|base.html            |[view here](booking/static/booking/image/base-htmlvalidation.png)           | Passed | 
+|login.html            |[view here](booking/static/booking/image/LoginPage-Validation.png)           | Passed |
+|makeBooking.html           |[view here](booking/static/booking/image/Make-BookingValidation.png)          | Passed |
+|dashboard.html        |[view here](booking/static/booking/image/AnalyticsDashboard-Validation2.png)       | Passed | 
+|my-Booking.html  |[view here](booking/static/booking/image/MyBooking-Validator.png) | Passed |
 |CSS       |[view here](booking/static/booking/image/CSS-Validation.png)       | Passed | 
 
 ##### back to [top](#table-of-contents)
