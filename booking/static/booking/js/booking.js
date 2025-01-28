@@ -57,6 +57,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Adjust menu responsiveness on window resize
+    const menuContainer = document.querySelector('.menu-container');
+
+    function adjustMenuLayout() {
+        if (window.innerWidth < 768) {
+            menuContainer.style.padding = '1.5rem';
+            menuContainer.style.margin = '1rem';
+        } else {
+            menuContainer.style.padding = '2.5rem';
+            menuContainer.style.margin = '2rem auto';
+        }
+    }
+
+    window.addEventListener('resize', adjustMenuLayout);
+    adjustMenuLayout(); // Initial adjustment
+
     // Form validation
     if (bookingForm) {
         bookingForm.addEventListener('submit', function(e) {

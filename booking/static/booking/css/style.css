@@ -813,8 +813,9 @@ input:focus, textarea:focus, select:focus {
     padding: 2.5rem;
     background: rgba(255, 255, 255, 0.98);
     border-radius: 16px;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
+    overflow: hidden;
 }
 
 .menu-container::before {
@@ -824,16 +825,16 @@ input:focus, textarea:focus, select:focus {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    background: linear-gradient(90deg, #3498db, #8e44ad);
 }
 
 .menu-title {
     text-align: center;
-    color: var(--primary-color);
+    color: #3498db;
     font-size: 2.5rem;
     margin-bottom: 3rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--light-gray);
+    border-bottom: 2px solid #ecf0f1;
 }
 
 .menu-section {
@@ -841,30 +842,30 @@ input:focus, textarea:focus, select:focus {
 }
 
 .menu-category {
-    color: var(--dark-gray);
+    color: #2c3e50;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid #8e44ad;
 }
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
 
 .menu-item {
     padding: 1.5rem;
-    background: var(--white);
+    background: #fff;
     border-radius: 8px;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .menu-item:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .menu-item-header {
@@ -872,27 +873,28 @@ input:focus, textarea:focus, select:focus {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 0.5rem;
-    border-bottom: 1px dashed var(--light-gray);
+    border-bottom: 1px dashed #bdc3c7;
     padding-bottom: 0.5rem;
 }
 
 .menu-item-name {
-    color: var(--primary-color);
+    color: #3498db;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
 .menu-item-price {
-    color: var(--secondary-color);
+    color: #e74c3c;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
 .menu-item-description {
-    color: var(--text-color);
+    color: #7f8c8d;
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 1rem;
+    font-weight: bolder;
 }
 
 /* Dietary Badges */
@@ -904,29 +906,29 @@ input:focus, textarea:focus, select:focus {
 
 .dietary-badge {
     display: inline-block;
-    padding: 0.2rem 0.5rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 
 .vegetarian {
-    background-color: #4CAF50;
+    background-color: #27ae60;
     color: white;
 }
 
 .vegan {
-    background-color: #8BC34A;
+    background-color: #2ecc71;
     color: white;
 }
 
 .gluten-free {
-    background-color: #FF9800;
+    background-color: #f39c12;
     color: white;
 }
 
 .nuts {
-    background-color: #795548;
+    background-color: #d35400;
     color: white;
 }
 
@@ -934,11 +936,11 @@ input:focus, textarea:focus, select:focus {
 .dietary-legend {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--light-gray);
+    border-top: 1px solid #ecf0f1;
 }
 
 .dietary-legend h3 {
-    color: var(--primary-color);
+    color: #3498db;
     margin-bottom: 1rem;
 }
 
@@ -952,6 +954,7 @@ input:focus, textarea:focus, select:focus {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-weight: bolder;
 }
 
 /* Responsive Design */
@@ -971,8 +974,10 @@ input:focus, textarea:focus, select:focus {
 
     .menu-item:hover {
         transform: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 }
+
 /* Animations */
 .fade-in {
     animation: fadeIn 0.3s ease-in;
