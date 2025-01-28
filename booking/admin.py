@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Table, Booking
+from .models import Table, Booking, MenuItem
 
 
 # Create your admin here
@@ -19,3 +19,10 @@ class BookingAdmin(admin.ModelAdmin):
     )
     list_filter = ('booking_date', 'booking_time')
     search_fields = ('user__username', 'table__table_number')
+
+
+@admin.register(MenuItem)
+class MenuItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'price', 'available')
+    list_filter = ('category', 'available')
+    search_fields = ('name', 'category', 'dietary_info')

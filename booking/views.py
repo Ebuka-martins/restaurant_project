@@ -6,19 +6,24 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Avg, Count
 from django.db.models.functions import ExtractMonth
+from itertools import groupby
+from operator import attrgetter
 from datetime import datetime, timedelta
 from .models import (
-    Booking, 
-    Table, 
-    BookingAnalytics, 
-    CustomerInsights, 
-    RevenueMetrics, 
-    CustomerFeedback
+    Booking,
+    Table,
+    BookingAnalytics,
+    CustomerInsights,
+    RevenueMetrics,
+    CustomerFeedback,
+    MenuItem
 )
 from .forms import BookingForm
 from .utils import send_booking_confirmation, send_cancellation_confirmation
 from django.conf import settings
 
+
+# Booking-related views
 @login_required
 def make_booking(request):
     if request.method == 'POST':
@@ -86,18 +91,20 @@ def make_booking(request):
 
     return render(request, 'booking/make_booking.html', {'form': form})
 
+
 @login_required
 def booking_list(request):
     bookings = Booking.objects.filter(user=request.user).order_by('booking_date', 'booking_time')
     return render(request, 'booking/booking_list.html', {'bookings': bookings})
 
+
 @login_required
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
-    
+
     if booking.user != request.user:
         return HttpResponseForbidden("You don't have permission to cancel this booking.")
-    
+
     if request.method == 'POST':
         booking.status = 'cancelled'
         booking.save()
@@ -119,8 +126,9 @@ def cancel_booking(request, booking_id):
         send_cancellation_confirmation(booking)
         messages.success(request, 'Booking cancelled successfully!')
         return redirect('booking_list')
-        
+
     return render(request, 'booking/cancel_booking.html', {'booking': booking})
+
 
 @login_required
 def delete_all_bookings(request):
@@ -187,6 +195,8 @@ def delete_all_bookings(request):
 
     return render(request, 'booking/delete_all_bookings.html')
 
+
+# Analytics dashboard
 class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'booking/analytics_dashboard.html'
 
@@ -241,12 +251,32 @@ class AnalyticsDashboardView(LoginRequiredMixin, TemplateView):
         })
         return context
 
-def menu_view(request):
-    menu_items = MenuItem.objects.filter(available=True).order_by('category', 'name')
-    categories = MenuItem.CATEGORY_CHOICES
 
+def menu_view(request):
+    # Get menu items and sort them by category
+    menu_items = MenuItem.objects.filter(available=True).order_by('category', 'name')
+    
+    # Create a dictionary with category as key and list of items as value
+    menu_by_category = {}
+    # Convert QuerySet to list to prevent iterator exhaustion
+    menu_items_list = list(menu_items)
+    
+    for category, items in groupby(menu_items_list, key=attrgetter('category')):
+        menu_by_category[category] = list(items)
+    
+    # Debug print
+    print("Categories:", menu_by_category.keys())
+    print("Total items:", len(menu_items_list))
+    
     context = {
-        'categories': categories,
-        'menu_items': menu_items,
+        'menu_by_category': menu_by_category,
+        'menu_items': menu_items,  # Keep the original queryset for debugging
+        'categories': MenuItem.CATEGORY_CHOICES
     }
     return render(request, 'booking/menu.html', context)
+
+
+# Static pages
+def about_view(request):
+    """View for the About page"""
+    return render(request, 'booking/about.html')

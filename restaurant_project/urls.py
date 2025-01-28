@@ -30,4 +30,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('analytics-dashboard/', views.AnalyticsDashboardView.as_view(), name='analytics_dashboard'),
     path('delete-all-bookings/', views.delete_all_bookings, name='delete_all_bookings'),
+    path('about/', views.about_view, name='about'),
+    path('menu/', views.menu_view, name='menu'),
 ]

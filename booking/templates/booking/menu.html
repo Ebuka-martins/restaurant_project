@@ -1,0 +1,48 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+<div class="menu-container">
+    <h1 class="menu-title">Our Menu</h1>
+    
+    <!-- Debug information -->
+    <div style="display: none;">
+        Categories available: {{ menu_by_category.keys }}
+        Total items: {{ menu_items.count }}
+    </div>
+    
+    {% for category, items in menu_by_category.items %}
+    <section class="menu-section">
+        <h2 class="menu-category">{{ category }}</h2>
+        <div class="menu-grid">
+            {% for item in items %}
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-name">{{ item.name }}</h3>
+                    <span class="menu-item-price">€{{ item.price }}</span>
+                </div>
+                <p class="menu-item-description">{{ item.description }}</p>
+                {% if item.dietary_info %}
+                <div class="dietary-info">
+                    {% if 'V' in item.dietary_info %}<span class="dietary-badge vegetarian">V</span>{% endif %}
+                    {% if 'VG' in item.dietary_info %}<span class="dietary-badge vegan">VG</span>{% endif %}
+                    {% if 'GF' in item.dietary_info %}<span class="dietary-badge gluten-free">GF</span>{% endif %}
+                    {% if 'N' in item.dietary_info %}<span class="dietary-badge nuts">N</span>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+
+    <div class="dietary-legend">
+        <h3>Dietary Information</h3>
+        <div class="legend-items">
+            <span class="legend-item"><span class="dietary-badge vegetarian">V</span> Vegetarian</span>
+            <span class="legend-item"><span class="dietary-badge vegan">VG</span> Vegan</span>
+            <span class="legend-item"><span class="dietary-badge gluten-free">GF</span> Gluten Free</span>
+            <span class="legend-item"><span class="dietary-badge nuts">N</span> Contains Nuts</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

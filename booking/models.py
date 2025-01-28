@@ -100,3 +100,22 @@ class CustomerInsights(models.Model):
 
     def __str__(self):
         return f"Insights for {self.user.username}"
+
+
+class MenuItem(models.Model):
+    CATEGORY_CHOICES = [
+        ('Starters', 'Starters'),
+        ('Main Courses', 'Main Courses'),
+        ('Desserts', 'Desserts'),
+        ('Beverages', 'Beverages'),
+    ]
+
+    name = models.CharField(max_length=100)  # Corrected max_length
+    description = models.TextField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    dietary_info = models.CharField(max_length=20, blank=True)  # Store as 'V,VG,GF,N'
+    available = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
