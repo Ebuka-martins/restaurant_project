@@ -113,6 +113,51 @@ def booking_list(request):
     })
 
 @login_required
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    
+    # Check if the booking is confirmed (can only edit confirmed bookings)
+    if booking.status != 'confirmed':
+        messages.error(request, 'Only confirmed bookings can be edited.')
+        return redirect('booking_list')
+    
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            new_booking = form.save(commit=False)
+            
+            # Find available table
+            tables = Table.objects.filter(capacity__gte=new_booking.number_of_guests)
+            available_table = None
+
+            for table in tables:
+                existing_bookings = Booking.objects.filter(
+                    table=table,
+                    booking_date=new_booking.booking_date,
+                    booking_time=new_booking.booking_time,
+                    status='confirmed'
+                ).exclude(id=booking_id)  # Exclude current booking
+                
+                if not existing_bookings.exists():
+                    available_table = table
+                    break
+
+            if available_table:
+                new_booking.table = available_table
+                new_booking.save()
+                messages.success(request, 'Booking updated successfully!')
+                return redirect('booking_list')
+            else:
+                messages.error(request, 'No tables available for this time.')
+    else:
+        form = BookingForm(instance=booking)
+    
+    return render(request, 'booking/edit_booking.html', {
+        'form': form,
+        'booking': booking
+    })
+
+@login_required
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
 

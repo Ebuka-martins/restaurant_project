@@ -1,0 +1,27 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Edit Booking</h2>
+    <form method="post" id="edit-booking-form">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+            <div class="field-errors">
+                {% for error in field.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="form-buttons">
+            <button type="submit" class="submit-button">Update Booking</button>
+            <a href="{% url 'booking_list' %}" class="cancel-link">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

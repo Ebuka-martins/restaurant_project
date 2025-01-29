@@ -11,7 +11,10 @@
                 <p>Guests: {{ booking.number_of_guests }}</p>
                 <p>Status: <span class="status {{ booking.status }}">{{ booking.status|title }}</span></p>
                 {% if booking.status == 'confirmed' %}
-                    <a href="{% url 'cancel_booking' booking.id %}" class="cancel-button">Cancel Booking</a>
+                    <div class="booking-buttons">
+                        <a href="{% url 'edit_booking' booking.id %}" class="edit-button">Edit Booking</a>
+                        <a href="{% url 'cancel_booking' booking.id %}" class="cancel-button">Cancel Booking</a>
+                    </div>
                 {% endif %}
             </div>
         {% endfor %}
