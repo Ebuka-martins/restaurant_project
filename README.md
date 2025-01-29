@@ -91,6 +91,16 @@ The platform allows registered users to make restaurant reservations, manage the
 
    ![My Booking Page for full sized screen](booking/static/booking/image/my-bookings.png)
 
+   ### My Menu Page
+   This page is where all the menu list, the food options and the prices for the dishes
+
+   ![My Menu Page for full sized screen](booking/static/booking/image/menus.png)
+
+   ### My About Page
+   This page that describes what all my Phantom booking is about, it talk about my Team, experience, pride and a sweet welcome development to all my customers.
+
+   ![My About Page for full sized screen](booking/static/booking/image/about.png)
+
    ### Booking Analytics Page
    This is the page that Summarizes every booking trends such as the ```total_bookings, confirmed_bookings, cancelled_bookings,Customer_Feedback such as (rating (1-5 scale) and optional comment.), RevenueMetrics such as (Daily revenue, average revenue per booking, and per guest.)```
    This page also provides the insights into customer behavior such as the Total bookings, cancellations, spending, and dining preferences.

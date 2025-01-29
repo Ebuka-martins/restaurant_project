@@ -95,7 +95,9 @@ The complete site was tested on the lighthouse facility in Google Developer Tool
 | MakeBooking-Section Page |![screenshot](booking/static/booking/image/makebooking-section.png) |  Meets criteria |                        
 | Analytics-Section Page |![screenshot](booking/static/booking/image/Analytics-DashboardSection.png) |  Meets criteria |                        
 | DeleteAll-Section Page |![screenshot](booking/static/booking/image/DeleteAll-section.png) |  Meets criteria |                        
-| Menu-Section Page |![screenshot](booking/static/booking/image/menu-section.png) |  Meets criteria |                        
+| Menu-Section Page |![screenshot](booking/static/booking/image/menu-section.png) |  Meets criteria |                     
+| About-Section Page |![screenshot](booking/static/booking/image/menu-section.png) |  Meets criteria |                        
+
 
 ---
 
@@ -126,6 +128,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 |dashboard.html        |[view here](booking/static/booking/image/AnalyticsDashboard-Validation2.png)       | Passed | 
 |my-Booking.html  |[view here](booking/static/booking/image/MyBooking-Validator.png) | Passed |
 |menu.html  |[view here](booking/static/booking/image/menu-page.png) | Passed |
+|About.html  |[view here](booking/static/booking/image/menu-page.png) | Passed |
 |CSS       |[view here](booking/static/booking/image/CSS-Validation.png)       | Passed | 
 
 ##### back to [top](#table-of-contents)
