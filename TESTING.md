@@ -95,6 +95,7 @@ The complete site was tested on the lighthouse facility in Google Developer Tool
 | MakeBooking-Section Page |![screenshot](booking/static/booking/image/makebooking-section.png) |  Meets criteria |                        
 | Analytics-Section Page |![screenshot](booking/static/booking/image/Analytics-DashboardSection.png) |  Meets criteria |                        
 | DeleteAll-Section Page |![screenshot](booking/static/booking/image/DeleteAll-section.png) |  Meets criteria |                        
+| Menu-Section Page |![screenshot](booking/static/booking/image/menu-section.png) |  Meets criteria |                        
 
 ---
 
@@ -109,7 +110,7 @@ To ensure a broad range of users can successfully use this site, I tested it acr
 
 For testing compatibility, I created the correct functionality and appearance across devices, the website was tested on the following browsers: Chrome, Firefox and Microsoft Edge.
 
-![screenshot](booking/static/booking/image/navbar-confirmationbig.png)
+![screenshot](booking/static/booking/image/menu.png)
 
 ------
 
@@ -124,6 +125,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 |makeBooking.html           |[view here](booking/static/booking/image/Make-BookingValidation.png)          | Passed |
 |dashboard.html        |[view here](booking/static/booking/image/AnalyticsDashboard-Validation2.png)       | Passed | 
 |my-Booking.html  |[view here](booking/static/booking/image/MyBooking-Validator.png) | Passed |
+|menu.html  |[view here](booking/static/booking/image/menu-page.png) | Passed |
 |CSS       |[view here](booking/static/booking/image/CSS-Validation.png)       | Passed | 
 
 ##### back to [top](#table-of-contents)
