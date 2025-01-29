@@ -103,6 +103,11 @@ The platform allows registered users to make restaurant reservations, manage the
 
    ![My About Page for full sized screen](booking/static/booking/image/about.png)
 
+   ### Edit Booking Page
+   This page gives the company the ability to edit any bookings, that arises when the customer decides to edit or change there previous booking date, time and number of guests.
+
+   ![My About Page for full sized screen](booking/static/booking/image/edit-booking.png)
+
    ### Booking Analytics Page
    This is the page that Summarizes every booking trends such as the ```total_bookings, confirmed_bookings, cancelled_bookings,Customer_Feedback such as (rating (1-5 scale) and optional comment.), RevenueMetrics such as (Daily revenue, average revenue per booking, and per guest.)```
    This page also provides the insights into customer behavior such as the Total bookings, cancellations, spending, and dining preferences.
