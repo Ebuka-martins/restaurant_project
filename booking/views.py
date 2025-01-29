@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Avg, Count
 from django.db.models.functions import ExtractMonth
+from django.core.paginator import Paginator
 from itertools import groupby
 from operator import attrgetter
 from datetime import datetime, timedelta
@@ -94,9 +95,22 @@ def make_booking(request):
 
 @login_required
 def booking_list(request):
-    bookings = Booking.objects.filter(user=request.user).order_by('booking_date', 'booking_time')
-    return render(request, 'booking/booking_list.html', {'bookings': bookings})
-
+    # Get all bookings for the user, ordered by date and time
+    booking_list = Booking.objects.filter(user=request.user).order_by('booking_date', 'booking_time')
+    
+    # Create a paginator object with 5 bookings per page
+    paginator = Paginator(booking_list, 5) 
+    
+    # Get the page number from the request
+    page_number = request.GET.get('page')
+    
+    # Get the Page object for the current page
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'booking/booking_list.html', {
+        'bookings': page_obj,  
+        'page_obj': page_obj,  
+    })
 
 @login_required
 def cancel_booking(request, booking_id):

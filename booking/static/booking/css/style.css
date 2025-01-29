@@ -334,6 +334,51 @@ input:focus, textarea:focus, select:focus {
     background-color: #c82333;
 }
 
+/* Pagination Controls */
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination .step-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--white);
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.pagination a {
+    color: var(--accent-color);
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.pagination a:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+}
+
+.pagination .current {
+    padding: 8px 16px;
+    background-color: var(--light-gray);
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
 /* Messages */
 .message {
     padding: 1rem;
