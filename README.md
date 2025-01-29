@@ -30,6 +30,7 @@ The platform allows registered users to make restaurant reservations, manage the
    - [My Booking Page](#My-Booking-Page)
    - [My Menu Page](#My-Menu-Page)
    - [My About Page](#My-About-Page)
+   - [Edit Booking Page](#Edit-Booking-Page)
    - [Booking Analytics Page](#Booking-Analytics-Page)
    - [NavBar](#NavBar)
    - [Analytical Dashboard](#Analytical-Dashboard)
