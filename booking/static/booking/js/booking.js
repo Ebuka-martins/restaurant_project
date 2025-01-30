@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
         '20:00', '20:30', '21:00'
     ];
 
+    // Get form elements
     const dateInput = document.getElementById('id_booking_date');
     const timeSelect = document.getElementById('id_booking_time');
     const guestsInput = document.getElementById('id_number_of_guests');
     const bookingForm = document.getElementById('booking-form');
     const editBookingForm = document.getElementById('edit-booking-form');
+    const menuContainer = document.querySelector('.menu-container');
 
     // Populate time slots for both new and edit forms
     function populateTimeSlots(selectElement) {
@@ -27,35 +29,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Populate time slots for both forms
     populateTimeSlots(timeSelect);
-    if (document.getElementById('edit-booking-form')) {
+    if (editBookingForm) {
         populateTimeSlots(document.getElementById('id_booking_time'));
     }
 
-    // Date validation
-    function setupDateValidation(dateInput) {
-        if (dateInput) {
-            const today = new Date();
-            const maxDate = new Date();
-            maxDate.setMonth(maxDate.getMonth() + 2); // Allow booking up to 2 months ahead
-
-            dateInput.min = today.toISOString().split('T')[0];
-            dateInput.max = maxDate.toISOString().split('T')[0];
-
-            dateInput.addEventListener('change', validateDate);
-        }
-    }
-
-    setupDateValidation(dateInput);
-    if (document.getElementById('edit-booking-form')) {
-        setupDateValidation(document.getElementById('id_booking_date'));
-    }
-
     // Guest number validation
-    function setupGuestValidation(guestsInput) {
+    function setupGuestValidation(formElement) {
+        const guestsInput = formElement.querySelector('input[name="number_of_guests"]');
         if (guestsInput) {
             guestsInput.addEventListener('change', function() {
-                if (this.value < 1) this.value = 1;
-                if (this.value > 20) {
+                const value = parseInt(this.value);
+                if (isNaN(value) || value < 1) {
+                    this.value = 1;
+                } else if (value > 20) {
                     this.value = 20;
                     Swal.fire({
                         title: 'Large Group Booking',
@@ -75,31 +61,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    setupGuestValidation(guestsInput);
-    if (document.getElementById('edit-booking-form')) {
-        setupGuestValidation(document.getElementById('id_number_of_guests'));
+    // Setup validation for both forms
+    if (bookingForm) {
+        setupGuestValidation(bookingForm);
+    }
+    if (editBookingForm) {
+        setupGuestValidation(editBookingForm);
     }
 
-    // Adjust menu responsiveness on window resize
-    const menuContainer = document.querySelector('.menu-container');
-
-    function adjustMenuLayout() {
-        if (window.innerWidth < 768) {
-            menuContainer?.style.padding = '1.5rem';
-            menuContainer?.style.margin = '1rem';
-        } else {
-            menuContainer?.style.padding = '2.5rem';
-            menuContainer?.style.margin = '2rem auto';
-        }
-    }
-
-    window.addEventListener('resize', adjustMenuLayout);
-    adjustMenuLayout(); // Initial adjustment
-
+    // Date validation
     function validateDate(e) {
         const selected = new Date(e.target.value);
         const today = new Date();
-        today.setHours(0, 0, 0, 0); // Reset time to start of day for fair comparison
+        today.setHours(0, 0, 0, 0);
         
         if (selected < today) {
             Swal.fire({
@@ -112,10 +86,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Form validation for new bookings
+    // Menu responsiveness
+    function adjustMenuLayout() {
+        if (menuContainer) {
+            if (window.innerWidth < 768) {
+                menuContainer.style.padding = '1.5rem';
+                menuContainer.style.margin = '1rem';
+            } else {
+                menuContainer.style.padding = '2.5rem';
+                menuContainer.style.margin = '2rem auto';
+            }
+        }
+    }
+
+    // Add event listeners
+    window.addEventListener('resize', adjustMenuLayout);
+    adjustMenuLayout();
+
+    if (dateInput) {
+        const today = new Date();
+        const maxDate = new Date();
+        maxDate.setMonth(maxDate.getMonth() + 2);
+        
+        dateInput.min = today.toISOString().split('T')[0];
+        dateInput.max = maxDate.toISOString().split('T')[0];
+        dateInput.addEventListener('change', validateDate);
+    }
+
+    // Form submissions
     if (bookingForm) {
         bookingForm.addEventListener('submit', function(e) {
             const date = new Date(dateInput.value);
+            const guestsInput = this.querySelector('input[name="number_of_guests"]');
+            const value = parseInt(guestsInput.value);
+
             if (date < new Date()) {
                 e.preventDefault();
                 Swal.fire({
@@ -137,6 +141,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 return;
             }
+
+            if (value > 20) {
+                e.preventDefault();
+                guestsInput.value = 20;
+                Swal.fire({
+                    title: 'Large Group Booking',
+                    text: 'For parties larger than 20, please contact us directly at +353 899 728 953 for special arrangements.',
+                    icon: 'info',
+                    confirmButtonText: 'Got it!',
+                    confirmButtonColor: '#3498db'
+                });
+                return;
+            }
         });
     }
 
@@ -144,36 +161,23 @@ document.addEventListener('DOMContentLoaded', function() {
     if (editBookingForm) {
         editBookingForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Validate date
             const editDateInput = document.getElementById('id_booking_date');
-            const editDate = new Date(editDateInput.value);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            if (editDate < today) {
-                Swal.fire({
-                    title: 'Invalid Date',
-                    text: 'Please select a future date.',
-                    icon: 'error',
-                    confirmButtonColor: '#3498db'
-                });
-                return;
-            }
-
-            // Validate time
             const editTimeSelect = document.getElementById('id_booking_time');
-            if (!editTimeSelect.value) {
+            const guestsInput = this.querySelector('input[name="number_of_guests"]');
+            const value = parseInt(guestsInput.value);
+            
+            if (value > 20) {
+                guestsInput.value = 20;
                 Swal.fire({
-                    title: 'Time Required',
-                    text: 'Please select a time slot.',
-                    icon: 'warning',
+                    title: 'Large Group Booking',
+                    text: 'For parties larger than 20, please contact us directly at +353 899 728 953 for special arrangements.',
+                    icon: 'info',
+                    confirmButtonText: 'Got it!',
                     confirmButtonColor: '#3498db'
                 });
                 return;
             }
 
-            // Show confirmation dialog
             Swal.fire({
                 title: 'Confirm Changes',
                 text: 'Are you sure you want to update this booking?',
@@ -182,13 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 confirmButtonText: 'Yes, update it!',
                 cancelButtonText: 'No, cancel',
                 confirmButtonColor: '#4CAF50',
-                cancelButtonColor: '#f44336',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
+                cancelButtonColor: '#f44336'
             }).then((result) => {
                 if (result.isConfirmed) {
                     editBookingForm.submit();
